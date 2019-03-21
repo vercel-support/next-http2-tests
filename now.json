@@ -1,0 +1,33 @@
+{
+  "version": 2,
+  "name": "next-http2-tests",
+  "builds": [
+    { "src": "next.config.js", "use": "@now/next" }
+  ],
+  "regions": ["all"],
+  "routes": [
+    { 
+      "src": "/.*",
+      "headers": {"cache-control": "s-maxage=31536000, maxage=0"},
+      "continue": true
+    },
+
+    { 
+      "src": "/service-worker.js",  
+      "dest": "/_next/static/service-worker.js",
+      "headers": {
+        "cache-control": "public, max-age=43200, immutable",
+        "Service-Worker-Allowed": "/"
+      }
+    },
+    
+    
+    { 
+      "src": "/a-route/", 
+      "dest": "/"
+    },
+    
+    { "src": "/_next/static/(?:[^/]+/pages|chunks|runtime)/.+", "headers": { "cache-control": "immutable" } }
+
+  ]
+}
