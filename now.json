@@ -4,6 +4,9 @@
   "builds": [
     { "src": "next.config.js", "use": "@now/next" }
   ],
+  "alias": [
+    "http2-test.bbi.space"
+  ],
   "regions": ["all"],
   "routes": [
     { 
